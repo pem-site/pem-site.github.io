@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans KR', sans-serif; }
@@ -16,7 +16,6 @@
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .break-keep { word-break: keep-all; }
         
-        /* 각 페이지 우측 하단 영문 스타일 */
         .page-indicator {
             position: absolute;
             bottom: 2.5rem;
@@ -31,19 +30,19 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-    <header class="fixed w-full z-50 bg-white shadow-md py-3">
+    <header class="fixed w-full z-50 bg-white shadow-md py-2 md:py-3">
         <div class="container mx-auto px-6 flex justify-between items-center">
             
-            <a href="#" class="flex items-center space-x-2.5 group select-none">
-                <img src="logo.png" alt="PEM Logo" class="h-10 w-auto object-contain">
+            <a href="#" class="flex items-center space-x-4 group select-none">
+                <img src="logo.png" alt="PEM Logo" class="h-14 md:h-20 w-auto object-contain transition-transform duration-200 group-hover:scale-101">
                 
-                <div class="flex items-baseline font-bold text-slate-900">
-                    <span class="text-sm md:text-base text-slate-500 font-medium mr-1">(주)</span>
-                    <span class="text-xl md:text-2xl font-black tracking-tight">PEM</span>
+                <div class="flex items-center border-l-2 border-slate-300 pl-4 h-10 md:h-14 space-x-2 text-slate-900">
+                    <span class="text-xl md:text-2xl font-bold pt-1 text-slate-600">(주)</span>
+                    <span class="text-2xl md:text-4xl font-black tracking-tight">PEM</span>
                 </div>
             </a>
             
-            <nav class="hidden lg:flex items-center space-x-10 text-lg font-bold tracking-tight text-slate-700">
+            <nav class="hidden lg:flex items-center space-x-8 text-xl font-black tracking-tight text-slate-700">
                 <a href="#about" class="hover:text-blue-600 transition-colors">회사소개</a>
                 <a href="#process" class="hover:text-blue-600 transition-colors">컨설팅과정</a>
                 <a href="#new-tech" class="hover:text-blue-600 transition-colors">건설신기술</a>
@@ -54,7 +53,7 @@
         </div>
     </header>
 
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2070&q=80" class="w-full h-full object-cover scale-110" />
             <div class="absolute inset-0 bg-gradient-to-br from-blue-950/95 via-blue-900/80 to-slate-900/70"></div>
