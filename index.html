@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .break-keep { word-break: keep-all; }
@@ -29,17 +28,18 @@
             text-transform: uppercase;
         }
 
-        /* 로고와 텍스트 조화를 위한 커스텀 스타일 */
-        .brand-text-kr {
-            color: #1e2d42; /* 로고 상단의 깊은 곤색(네이비 블루) 반영 */
-            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-            font-weight: 800;
+        /* [밸런스 조정] 디자이너 추천 로고 텍스트 스타일 세팅 */
+        .brand-inc-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #64748B; /* (주)는 가볍고 세련된 회색조로 밸런스 유지 */
+            font-weight: 500;
+            letter-spacing: -0.02em;
         }
-        .brand-text-en {
-            color: #1e2d42;
-            font-family: 'Pretendard', sans-serif;
-            font-weight: 900;
-            letter-spacing: 0.08em; /* PEM 글자 사이 자간 확대 */
+        .brand-main-text {
+            font-family: 'Syncopate', sans-serif;
+            color: #1E2D42; /* 로고와 어울리는 묵직한 딥네이비 */
+            font-weight: 700;
+            letter-spacing: 0.12em; /* 세련되게 넓힌 자간 */
         }
     </style>
 </head>
@@ -48,16 +48,12 @@
     <header class="fixed w-full z-50 bg-white shadow-lg py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-4 group select-none">
-                <div class="flex items-center h-16">
-                    <img src="logo.png" alt="PEM" class="w-auto h-14 md:h-16 object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
-                    <div id="text-logo" class="hidden w-14 h-14 bg-[#1e2d42] rounded-xl flex items-center justify-center font-bold text-white text-2xl">P</div>
-                </div>
-                <div class="flex flex-col justify-center border-l border-slate-200 pl-4 py-1">
-                    <div class="flex items-baseline space-x-1">
-                        <span class="brand-text-kr text-xs md:text-sm tracking-wide text-slate-500 font-bold">(주)</span>
-                        <span class="brand-text-en text-2xl md:text-3xl uppercase leading-none">P E M</span>
-                    </div>
-                    <span class="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-slate-400 uppercase mt-0.5">PRIME ENGINEERING MANAGEMENT</span>
+                <img src="logo.png" alt="PEM" class="w-auto h-12 md:h-14 object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
+                <div id="text-logo" class="hidden w-11 h-11 bg-slate-800 rounded-full flex items-center justify-center font-bold text-white text-lg">P</div>
+                
+                <div class="flex items-center border-l border-slate-200 pl-4 h-6 space-x-1.5">
+                    <span class="brand-inc-text text-sm md:text-base pt-0.5">(주)</span>
+                    <span class="brand-main-text text-2xl md:text-3xl leading-none">PEM</span>
                 </div>
             </a>
             <nav class="hidden lg:flex items-center space-x-10 text-lg font-bold tracking-tight text-slate-700">
@@ -170,7 +166,7 @@
             </div>
         </div>
         <div class="page-indicator text-white opacity-20 hidden sm:block">
-            PRIME engineering management
+            PRIME ENGINEERING MANAGEMENT
         </div>
     </section>
 
@@ -322,7 +318,7 @@
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
-                    </table>
+                    </iframe>
                 </div>
             </div>
             <div>
