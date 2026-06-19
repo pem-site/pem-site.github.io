@@ -6,8 +6,12 @@
     <title>(주)PEM - PEM Co., Ltd.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .break-keep { word-break: keep-all; }
@@ -25,18 +29,19 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="bg-slate-50 text-slate-800 antialiased">
 
     <header class="fixed w-full z-50 bg-white shadow-lg py-5">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 scale-[1.7] origin-left">
-                <img src="logo.png" alt="PEM" class="w-auto h-14 object-contain" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
+            <a href="#" class="flex items-center space-x-4">
+                <img src="logo.png" alt="PEM" class="w-auto h-12 object-contain" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
                 <div id="text-logo" class="hidden w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center font-bold text-white text-xl">P</div>
-                <div class="flex flex-col">
-                    <span class="text-3xl font-bold text-slate-850 flex items-baseline" style="font-family: -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif; letter-spacing: -0.02em;">(주)<span class="text-[1.12em] font-black tracking-[0.03em] relative -top-[0.01em] ml-1">PEM</span></span>
+                <div class="flex flex-col justify-center select-none">
+                    <span class="text-2xl font-black text-slate-900 tracking-tight leading-none mb-1.5">(주)PEM</span>
+                    <span class="text-[10px] font-bold text-blue-600 uppercase tracking-[0.18em] leading-none">PRIME ENGINEERING MANAGEMENT</span>
                 </div>
-</a>
-<nav class="hidden lg:flex items-center space-x-10 text-lg font-bold tracking-tight text-slate-700">
+            </a>
+            <nav class="hidden lg:flex items-center space-x-10 text-lg font-bold tracking-tight text-slate-700">
                 <a href="#about" class="hover:text-blue-600 transition-colors">회사소개</a>
                 <a href="#process" class="hover:text-blue-600 transition-colors">컨설팅과정</a>
                 <a href="#new-tech" class="hover:text-blue-600 transition-colors">건설신기술</a>
@@ -301,7 +306,7 @@
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    </table>
                 </div>
             </div>
             <div>
