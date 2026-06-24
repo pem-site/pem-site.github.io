@@ -12,336 +12,177 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-        .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; letter-spacing: -0.02em; }
+        .animate-fade-in-up { animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .break-keep { word-break: keep-all; }
         
-        .page-indicator {
-            position: absolute;
-            bottom: 2.5rem;
-            right: 2.5rem;
-            z-index: 20;
-            font-size: 1.1rem;
-            font-weight: 900;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
+        /* 대형 건설사 스타일의 볼드하고 안정감 있는 헤더 스티키 섀도우 */
+        .header-gradient {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
         }
-
-        /* 첫 번째 시안 특유의 두껍고 명확한 색감 스타일 지정 */
-        .brand-text-navy {
-            color: #111E35; /* 깊고 묵직한 다크 네이비 */
-        }
+        
+        /* 메인 브랜드 컬러 정의 */
+        .brand-navy { color: #0F1E36; }
+        .brand-bg-navy { background-color: #0F1E36; }
+        .brand-blue { color: #005EA6; }
+        .brand-bg-blue { background-color: #005EA6; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-white text-slate-900 antialiased">
 
-    <header class="fixed w-full z-50 bg-white shadow-md py-2 md:py-3">
+    <header class="fixed w-full z-50 header-gradient py-4 transition-all">
         <div class="container mx-auto px-6 flex justify-between items-center">
-           <a href="#" class="flex items-center gap-5 group select-none">
-
-    <img src="logo.png"
-         alt="PEM Logo"
-         class="h-16 md:h-20 w-auto object-contain">
-
-    <div>
-
-        <div class="text-[11px] md:text-xs tracking-[0.4em] font-bold text-blue-700 uppercase">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-
-        <div class="text-4xl md:text-6xl font-black tracking-[0.25em] text-slate-900 leading-none mt-1">
-            PEM
-        </div>
-
-        <div class="text-xs tracking-[0.25em] text-slate-500 uppercase mt-1">
-            SMART ENGINEERING SOLUTIONS
-        </div>
-
-    </div>
-
-</a> 
+            <a href="#" class="flex items-center gap-4 group select-none">
+                <img src="logo.png" alt="PEM Logo" class="h-12 md:h-14 w-auto object-contain">
+                <div class="border-l border-slate-300 pl-4">
+                    <div class="text-2xl md:text-3xl font-black tracking-tight text-[#0F1E36] leading-none">
+                        (주)PEM
+                    </div>
+                    <div class="text-[10px] tracking-wider text-slate-400 font-medium mt-1">
+                        PRIME ENGINEERING MANAGEMENT
+                    </div>
+                </div>
+            </a> 
             
-            
-            <nav class="hidden lg:flex items-center space-x-8 text-xl font-black tracking-tight text-slate-700">
-                <a href="#about" class="hover:text-blue-600 transition-colors">회사소개</a>
-                <a href="#process" class="hover:text-blue-600 transition-colors">컨설팅과정</a>
-                <a href="#new-tech" class="hover:text-blue-600 transition-colors">건설신기술</a>
-                <a href="#benefits" class="hover:text-blue-600 transition-colors">지정혜택</a>
-                <a href="#design" class="hover:text-blue-600 transition-colors">디지털설계</a>
-                <a href="#smart" class="hover:text-blue-600 transition-colors">스마트기술</a>
+            <nav class="hidden lg:flex items-center space-x-10 text-base font-bold text-slate-700">
+                <a href="#about" class="hover:text-[#005EA6] transition-colors relative after:absolute after:bottom-[-22px] after:left-0 after:w-0 after:h-[3px] after:bg-[#005EA6] hover:after:w-full after:transition-all">회사소개</a>
+                <a href="#process" class="hover:text-[#005EA6] transition-colors relative after:absolute after:bottom-[-22px] after:left-0 after:w-0 after:h-[3px] after:bg-[#005EA6] hover:after:w-full after:transition-all">컨설팅과정</a>
+                <a href="#new-tech" class="hover:text-[#005EA6] transition-colors relative after:absolute after:bottom-[-22px] after:left-0 after:w-0 after:h-[3px] after:bg-[#005EA6] hover:after:w-full after:transition-all">건설신기술/혜택</a>
+                <a href="#smart" class="hover:text-[#005EA6] transition-colors relative after:absolute after:bottom-[-22px] after:left-0 after:w-0 after:h-[3px] after:bg-[#005EA6] hover:after:w-full after:transition-all">스마트기술</a>
             </nav>
         </div>
     </header>
 
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+    <section class="relative min-h-screen flex items-center justify-start overflow-hidden pt-24">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80"
-class="w-full h-full object-cover opacity-95" />
-            <div class="absolute inset-0 bg-gradient-to-br from-[#08111f]/92 via-[#0f274f]/86 to-[#0b4b77]/78"></div>
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80" class="w-full h-full object-cover" alt="스마트 건설현장 배경" />
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1E36]/95 via-[#0F1E36]/80 to-transparent"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl">
-                <div class="inline-flex items-center space-x-3 px-5 py-2 mb-8 bg-white/10 backdrop-blur-md rounded-full animate-fade-in-up">
-                    <span class="text-blue-100 text-[11px] font-black uppercase tracking-[0.3em]">Smart Engineering Solutions</span>
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 mb-6 bg-[#005EA6]/20 border border-[#005EA6]/30 backdrop-blur-sm rounded animate-fade-in-up">
+                    <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Smart Engineering Solutions</span>
                 </div>
-                <h1 class="text-4xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight text-white drop-shadow-md animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-8 leading-[1.2] tracking-tight text-white animate-fade-in-up">
                     기술의 가치를 <br />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-[#93C5FD]">국가인증</span>으로 완성하다
+                    <span class="text-[#38BDF8]">국가인증</span>으로 완성하다
                 </h1>
-                <p class="text-lg md:text-2xl text-blue-50/80 max-w-2xl mb-12 font-medium drop-shadow-sm animate-fade-in-up break-keep">
-                    <span class="font-bold text-white">(주)PEM</span>은 귀사의 혁신 기술이 건설 시장의 새로운 기준이 되도록 가장 스마트한 <span class="text-white font-bold">건설신기술(NET) 지정 솔루션</span>을 제안합니다.
+                <p class="text-lg md:text-xl text-slate-300 max-w-2xl mb-12 font-light leading-relaxed animate-fade-in-up break-keep">
+                    <span class="font-bold text-white text-2xl block mb-2">(주)PEM</span>은 귀사의 혁신 기술이 건설 시장의 새로운 기준이 되도록 가장 스마트한 <span class="text-white font-semibold">건설신기술(NET) 지정 솔루션</span>을 제안합니다.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-6 animate-fade-in-up">
-                    <a href="#process" class="px-10 py-5 bg-white text-blue-900 rounded-2xl font-black text-sm tracking-widest uppercase hover:scale-105 transition-all text-center shadow-lg">CONSULTING PROCESS</a>
+                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up">
+                    <a href="#process" class="px-8 py-4 brand-bg-blue hover:bg-[#004B85] text-white font-bold text-sm tracking-wider transition-all shadow-lg text-center">CONSULTING PROCESS</a>
                 </div>
             </div>
         </div>
-        <div class="page-indicator text-white opacity-40 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
     </section>
 
-    <section id="about" class="py-32 bg-white relative overflow-hidden scroll-mt-24">
+    <section id="about" class="py-24 bg-white relative scroll-mt-24">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-20">
-                <div class="lg:w-1/2 relative group">
-                    <div class="relative z-10 overflow-hidden rounded-[3rem] shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" class="w-full h-[600px] object-cover" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-60"></div>
-                    </div>
-                    <div class="absolute -bottom-8 -right-8 bg-blue-900 p-10 rounded-[2.5rem] shadow-2xl z-20">
-                        <p class="text-blue-300 text-[10px] font-black tracking-widest uppercase mb-2">Trust & Idea</p>
-                        <p class="text-white text-4xl font-black italic tracking-tighter">PEM</p>
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative group w-full">
+                    <div class="relative overflow-hidden shadow-xl border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" class="w-full h-[450px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700" alt="협업 회의" />
                     </div>
                 </div>
-                <div class="lg:w-1/2 space-y-10">
-                    <div class="space-y-4">
-                        <p class="text-blue-600 font-black tracking-[0.4em] uppercase text-xs">Innovation Partner</p>
-                        <h2 class="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter">혁신적 아이디어를 <br /><span class="text-blue-900">지적 자산</span>으로</h2>
+                <div class="lg:w-1/2 space-y-8">
+                    <div class="space-y-3">
+                        <p class="text-[#005EA6] font-bold tracking-wider text-sm uppercase">Innovation Partner</p>
+                        <h2 class="text-4xl md:text-5xl font-black text-[#0F1E36] leading-tight tracking-tight">혁신적 아이디어를 <br><span class="text-[#005EA6]">(주)PEM</span>이 지적 자산으로</h2>
                     </div>
-                    <p class="text-slate-600 leading-relaxed text-xl font-medium break-keep">급변하는 스마트 건설 시장에서 귀사의 독자적인 기술력은 '국가인증'이라는 객관적 신뢰를 얻었을 때 비로소 그 진정한 가치를 발휘합니다.</p>
+                    <div class="h-[2px] w-16 brand-bg-blue"></div>
+                    <p class="text-slate-600 leading-relaxed text-lg font-normal break-keep">급변하는 스마트 건설 시장에서 귀사의 독자적인 기술력은 '국가인증'이라는 객관적 신뢰를 얻었을 때 비로소 그 진정한 가치를 발휘합니다.</p>
                 </div>
             </div>
         </div>
-        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
     </section>
 
-    <section class="py-32 bg-slate-900 text-white relative overflow-hidden scroll-mt-24">
+    <section class="py-24 bg-slate-50 relative border-t border-b border-slate-100">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-16">
-                <div class="lg:w-1/3 space-y-8">
-                    <p class="text-blue-400 font-bold tracking-widest uppercase">CORE EXPERTISE</p>
-                    <h2 class="text-4xl md:text-5xl font-black leading-snug break-keep text-white">
-                        기술의 가치를 <br>증명하는 <br><span class="text-blue-400 font-black">(주)PEM</span>의 전략
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-1/3 space-y-6 lg:sticky lg:top-32">
+                    <p class="text-[#005EA6] font-bold tracking-wider text-sm uppercase">CORE EXPERTISE</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold leading-tight break-keep text-[#0F1E36]">
+                        기술의 가치를 증명하는 <br><span class="text-[#005EA6] font-black">(주)PEM</span>의 전략
                     </h2>
-                    <p class="text-slate-400 text-lg leading-relaxed break-keep">
+                    <p class="text-slate-500 text-base leading-relaxed break-keep">
                         우리는 단순한 컨설팅을 넘어, 파트너의 비즈니스 가치를 극대화하는 실전형 전략을 제안합니다.
                     </p>
                 </div>
-                <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">현장 중심 컨설팅</h4>
-                            <span class="text-4xl font-black text-slate-700 italic opacity-50">01</span>
+                <div class="lg:w-2/2 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#005EA6] transition-all group shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-[#005EA6] tracking-widest uppercase">STRATEGY 01</span>
+                            <span class="text-2xl font-light text-slate-300 group-hover:text-[#005EA6] transition-colors">/</span>
                         </div>
-                        <p class="text-slate-400 text-sm break-keep">시공과 설계를 아우르는 실전 경험</p>
+                        <h4 class="text-xl font-bold text-[#0F1E36] mb-3">현장 중심 컨설팅</h4>
+                        <p class="text-slate-500 text-sm break-keep leading-relaxed">시공과 설계를 아우르는 실전 경험</p>
                     </div>
-                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">체계적 구조화</h4>
-                            <span class="text-4xl font-black text-slate-700 italic opacity-50">02</span>
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#005EA6] transition-all group shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-[#005EA6] tracking-widest uppercase">STRATEGY 02</span>
+                            <span class="text-2xl font-light text-slate-300 group-hover:text-[#005EA6] transition-colors">/</span>
                         </div>
-                        <p class="text-slate-400 text-sm break-keep">심의 위원을 설득하는 논리적 구성</p>
+                        <h4 class="text-xl font-bold text-[#0F1E36] mb-3">체계적 구조화</h4>
+                        <p class="text-slate-500 text-sm break-keep leading-relaxed">심의 위원을 설득하는 논리적 구성</p>
                     </div>
-                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">기존특허 보강 및 신기술 획득</h4>
-                            <span class="text-4xl font-black text-slate-700 italic opacity-50">03</span>
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#005EA6] transition-all group shadow-sm md:col-span-2">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-[#005EA6] tracking-widest uppercase">STRATEGY 03</span>
+                            <span class="text-2xl font-light text-slate-300 group-hover:text-[#005EA6] transition-colors">/</span>
                         </div>
-                        <p class="text-slate-400 text-sm break-keep">단순한 기술을 넘어, 특허의 전략적 보강을 통해 국가 신기술 인증까지 이끌어냅니다.</p>
+                        <h4 class="text-xl font-bold text-[#0F1E36] mb-3">기존특허 보강 및 신기술 획득</h4>
+                        <p class="text-slate-500 text-sm break-keep leading-relaxed">단순한 기술을 넘어, 특허의 전략적 보강을 통해 국가 신기술 인증까지 이끌어냅니다.</p>
                     </div>
-                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">난제의 명확한 구조화</h4>
-                            <span class="text-4xl font-black text-slate-700 italic opacity-50">04</span>
+                    <div class="p-8 bg-white border border-slate-200 hover:border-[#005EA6] transition-all group shadow-sm md:col-span-2">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-[#005EA6] tracking-widest uppercase">STRATEGY 04</span>
+                            <span class="text-2xl font-light text-slate-300 group-hover:text-[#005EA6] transition-colors">/</span>
                         </div>
-                        <p class="text-slate-400 text-sm break-keep">기술적 난제를 논리적으로 분석하여 심의 위원들이 납득할 수 있는 체계로 재구성합니다.</p>
+                        <h4 class="text-xl font-bold text-[#0F1E36] mb-3">난제의 명확한 구조화</h4>
+                        <p class="text-slate-500 text-sm break-keep leading-relaxed">기술적 난제를 논리적으로 분석하여 심의 위원들이 납득할 수 있는 체계로 재구성합니다.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page-indicator text-white opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
+    </section>
+
+    <section id="process" class="py-24 bg-white scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mb-16 space-y-3">
+                <p class="text-[#005EA6] font-bold tracking-wider text-sm uppercase">Success Roadmap</p>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-[#0F1E36]">신기술 지정 컨설팅 프로세스</h3>
+                <div class="h-[2px] w-12 brand-bg-blue mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 border-t border-slate-200">
+                <div class="pt-8 md:pr-6 border-b md:border-b-0 pb-8 md:pb-0 relative">
+                    <span class="text-xs font-bold text-slate-400 tracking-widest block mb-2">STAGE 01</span>
+                    <h4 class="text-xl font-bold text-[#0F1E36] mb-3 flex items-center gap-2">사전 진단 <i class="fas fa-chevron-right text-slate-300 ml-auto hidden md:block text-xs"></i></h4>
+                    <p class="text-sm text-slate-500 break-keep leading-relaxed">기술의 신기술 지정 가능성을 검토하고 최적의 로드맵을 설정합니다.</p>
+                </div>
+                <div class="pt-8 md:px-6 border-b md:border-b-0 pb-8 md:pb-0 relative">
+                    <span class="text-xs font-bold text-slate-400 tracking-widest block mb-2">STAGE 02</span>
+                    <h4 class="text-xl font-bold text-[#0F1E36] mb-3 flex items-center gap-2">자료 준비 <i class="fas fa-chevron-right text-slate-300 ml-auto hidden md:block text-xs"></i></h4>
+                    <p class="text-sm text-slate-500 break-keep leading-relaxed">심사위원을 설득할 수 있는 논리적인 서류와 근거 데이터를 준비합니다.</p>
+                </div>
+                <div class="pt-8 md:px-6 border-b md:border-b-0 pb-8 md:pb-0 relative">
+                    <span class="text-xs font-bold text-slate-400 tracking-widest block mb-2">STAGE 03</span>
+                    <h4 class="text-xl font-bold text-[#0F1E36] mb-3 flex items-center gap-2">1차 심사 <i class="fas fa-chevron-right text-slate-300 ml-auto hidden md:block text-xs"></i></h4>
+                    <p class="text-sm text-slate-500 break-keep leading-relaxed">전문가 그룹 앞에서 기술의 우수성과 진보성을 증명하는 단계입니다.</p>
+                </div>
+                <div class="pt-8 md:pl-6 pb-8 md:pb-0">
+                    <span class="text-xs font-bold text-slate-400 tracking-widest block mb-2">STAGE 04</span>
+                    <h4 class="text-xl font-bold text-[#0F1E36] mb-3">2차 심사</h4>
+                    <p class="text-sm text-slate-500 break-keep leading-relaxed">이론이 아닌 실제 시공 사례를 통해 기술의 성능을 검증받습니다.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="process" class="relative py-32 bg-[#E0E7F1] scroll-mt-24">
+    <section id="new-tech" class="py-24 bg-slate-50 border-t border-b border-slate-200/60 scroll-mt-24">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center mb-16 space-y-4">
-                <p class="text-blue-600 font-black tracking-[0.3em] uppercase text-xs">Success Roadmap</p>
-                <h3 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">신기술 지정 컨설팅 프로세스</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
-                    <span class="text-6xl font-black text-blue-600 leading-none">01</span>
-                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">사전 진단</h4>
-                    <p class="text-sm text-slate-500 break-keep">기술의 신기술 지정 가능성을 검토하고 최적의 로드맵을 설정합니다.</p>
-                </div>
-                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
-                    <span class="text-6xl font-black text-blue-600 leading-none">02</span>
-                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">자료 준비</h4>
-                    <p class="text-sm text-slate-500 break-keep">심사위원을 설득할 수 있는 논리적인 서류와 근거 데이터를 준비합니다.</p>
-                </div>
-                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
-                    <span class="text-6xl font-black text-blue-600 leading-none">03</span>
-                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">1차 심사</h4>
-                    <p class="text-sm text-slate-500 break-keep">전문가 그룹 앞에서 기술의 우수성과 진보성을 증명하는 단계입니다.</p>
-                </div>
-                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
-                    <span class="text-6xl font-black text-blue-600 leading-none">04</span>
-                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">2차 심사</h4>
-                    <p class="text-sm text-slate-500 break-keep">이론이 아닌 실제 시공 사례를 통해 기술의 성능을 검증받습니다.</p>
-                </div>
-            </div>
-        </div>
-        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-    </section>
-
-    <section id="new-tech" class="relative py-32 bg-[#D0D9E6] scroll-mt-24">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center mb-24">
-                <h3 class="text-4xl md:text-5xl font-black text-slate-900">건설신기술(NET) 지정은 <br /><span class="text-blue-700">새로운 기준</span>입니다</h3>
-                <p class="mt-6 text-lg text-slate-700 font-medium break-keep">국가인증을 통해 우수성, 경제성, 안전성이 인정되는 기술임을 증명하고 시장 진입의 강력한 티켓을 확보하십시오.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
-                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-lightbulb"></i></div>
-                    <h4 class="text-2xl font-black mb-4">신규성 및 진보성</h4>
-                    <p class="text-slate-500 font-medium break-keep">핵심 기술 원리의 차별화와 획기적인 성능 향상을 논리적으로 증명합니다.</p>
-                </div>
-                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
-                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-chart-line"></i></div>
-                    <h4 class="text-2xl font-black mb-4">시장성 및 경제성</h4>
-                    <p class="text-slate-500 font-medium break-keep">LCC 분석을 통한 공사비 절감 및 유지관리 효율성을 제시합니다.</p>
-                </div>
-                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
-                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-shield-halved"></i></div>
-                    <h4 class="text-2xl font-black mb-4">안전성 및 적용성</h4>
-                    <p class="text-slate-500 font-medium break-keep">현장 시공의 안전 확보와 품질 일관성, 유지관리 편의성을 검증합니다.</p>
-                </div>
-            </div>
-        </div>
-        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-    </section>
-
-    <section id="benefits" class="relative py-32 bg-[#C0C9D6] scroll-mt-24">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center mb-20">
-                <p class="text-blue-800 font-black tracking-[0.3em] uppercase text-xs">Unmatched Value</p>
-                <h3 class="text-4xl md:text-5xl font-black text-slate-900 mt-4">지정 그 이상의 비즈니스 인센티브</h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
-                    <h4 class="text-xl font-black text-blue-900 mb-2">① 공공기관 우선 적용</h4>
-                    <p class="text-slate-500 break-keep">국가기관 및 지자체 발주 공사 시 신기술 우선 반영 의무화 규정 적용</p>
-                </div>
-                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
-                    <h4 class="text-xl font-black text-blue-900 mb-2">② 입찰 PQ 가점</h4>
-                    <p class="text-slate-500 break-keep">입찰참가자격사전심사 시 기술 능력 항목에서 최고 수준의 가점 혜택</p>
-                </div>
-                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
-                    <h4 class="text-xl font-black text-blue-900 mb-2">③ 기술료 징수 권리</h4>
-                    <p class="text-slate-500 break-keep">제3자가 신기술을 현장에 적용할 경우 공사비 기반의 기술 사용료 징수</p>
-                </div>
-                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
-                    <h4 class="text-xl font-black text-blue-900 mb-2">④ 독점 보호 기간</h4>
-                    <p class="text-slate-500 break-keep">최초 8년, 연장 시 최대 15년까지 해당 기술에 대한 독점적 시장 권리</p>
-                </div>
-            </div>
-        </div>
-        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-    </section>
-
-    <section id="design" class="relative py-32 bg-slate-50 scroll-mt-24">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="p-8 bg-white rounded-2xl border shadow-sm">
-                    <i class="fas fa-external-link-alt text-blue-600 text-2xl mb-4"></i>
-                    <h4 class="font-black text-slate-900 text-xl">보고서 앱이동</h4>
-                </div>
-                <div class="p-8 bg-white rounded-2xl border shadow-sm">
-                    <i class="fas fa-magic text-emerald-600 text-2xl mb-4"></i>
-                    <h4 class="font-black text-slate-900 text-xl">보고서 자동작성</h4>
-                </div>
-            </div>
-        </div>
-        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-    </section>
-
-    <section id="smart" class="relative py-24 bg-slate-900 text-white scroll-mt-24">
-        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2">
-                <h3 class="text-4xl font-bold mb-8">디지털 대전환, <br><span class="text-blue-300 italic">스마트 건설기술</span>을 선도합니다</h3>
-                <p class="text-slate-400 text-lg mb-6 leading-relaxed">드론, BIM, 로보틱스 등 4차 산업혁명 기술의 지정을 위해 최적의 고도화 전략을 <br class="hidden sm:block"> 지원합니다.</p>
-            </div>
-            <div class="lg:w-1/2 rounded-3xl overflow-hidden border-4 border-slate-800">
-                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80" class="w-full" />
-            </div>
-        </div>
-        <div class="page-indicator text-white opacity-20 hidden sm:block">
-            PRIME ENGINEERING MANAGEMENT
-        </div>
-    </section>
-
-    <footer class="bg-slate-950 text-white py-24 relative">
-        <div class="container mx-auto px-6 grid lg:grid-cols-3 gap-12 mb-20">
-            <div class="flex flex-col justify-center space-y-6">
-                <h3 class="text-4xl font-black text-white tracking-wide">PEM Co., Ltd.</h3>
-                <p class="text-slate-300 text-xl leading-relaxed break-keep">
-                    Room 1106, Dojeong, 115 Anyang-ro, Manan-gu, <br>Anyang-si, Gyeonggi-do, Korea
-                </p>
-                <p class="text-blue-400 font-bold text-2xl tracking-wider">
-                    Prime Engineering Management
-                </p>
-            </div>
-            <div>
-                <h4 class="text-[10px] font-black uppercase text-blue-600 mb-6">Location</h4>
-                <div class="w-full h-56 rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.3241477759296!2d126.92265637637827!3d37.382218034024545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5f903673e721%3A0x8cf6b446a8be24ef!2s115%20Anyang-ro%2C%20Manan-gu%2C%20Anyang-si%2C%20Gyeonggi-do!5e0!3m2!1sen!2skr!4v1710000000000!5m2!1sen!2skr" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </table>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-[10px] font-black uppercase text-blue-600 mb-6">Contact Us</h4>
-                <ul class="space-y-4 text-slate-300 text-xl font-medium">
-                    <li><i class="fas fa-location-dot text-blue-600 mr-2 text-base"></i> 경기도 안양시 만안구 안양로 115 도정 1106호</li>
-                    <li><i class="fas fa-phone text-blue-600 mr-2 text-base"></i> 031-426-7194</li>
-                    <li><i class="fas fa-envelope text-blue-600 mr-2 text-base"></i> osung7194@naver.com</li>
-                </ul>
-            </div>
-        </div>
-        <div class="container mx-auto px-6 pt-12 border-t border-slate-900 text-center">
-            <p class="text-[10px] text-slate-600 font-black tracking-widest">© 2026 PEM CO., LTD. ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-[#0F1E36]">
