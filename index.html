@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,464 +6,341 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>(주)PEM - PEM Co., Ltd.</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
         .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; }
         @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .break-keep { word-break: keep-all; }
+        
+        .page-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            z-index: 20;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        /* [수정] 로고의 기하학적 형태와 어울리는 하이엔드 브랜드 스타일링 */
+        .brand-inc {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #4A5D78; /* 심볼 하단 회색조와 톤온톤 매칭 */
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+            letter-spacing: -0.03em;
+        }
+        
+        .brand-logo-text {
+            font-family: 'Syncopate', sans-serif;
+            color: #1E2D42; /* 로고 상단 메인 딥블루/네이비 색상 */
+            font-weight: 700;
+            letter-spacing: 0.18em; /* 글자 사이를 넓혀 미래지향적이고 와이드한 느낌 강조 */
+            text-shadow: 0px 1px 1px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
-<body class="bg-slate-50">
-    <div id="root"></div>
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // --- Logo Component ---
-        const Logo = ({ isFooter = false }) => (
-            <div className={`flex items-center space-x-4 group cursor-pointer origin-left ${isFooter ? 'scale-100' : 'scale-[1.5]'}`}> 
-                <div className="relative w-12 h-12 flex items-center justify-center">
-                    <img 
-                        src="./logo.png" 
-                        alt="PEM" 
-                        className="w-full h-full object-contain"
-                        onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.parentElement.innerHTML = `<div class="w-10 h-10 ${isFooter ? 'bg-white text-blue-900' : 'bg-blue-900 text-white'} rounded-full flex items-center justify-center font-bold">P</div>`;
-                        }}
-                    />
+    <header class="fixed w-full z-50 bg-white shadow-lg py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-4 group select-none">
+                <img src="logo.png" alt="PEM" class="w-auto h-16 md:h-18 object-contain transition-transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
+                <div id="text-logo" class="hidden w-14 h-14 bg-slate-800 rounded-full flex items-center justify-center font-bold text-white text-2xl">P</div>
+                
+                <div class="flex items-baseline border-l-2 border-slate-200 pl-4 h-8 items-center">
+                    <span class="brand-inc">(주)</span>
+                    <span class="brand-logo-text text-3xl md:text-4xl leading-none">PEM</span>
                 </div>
-                <div className="flex flex-col">
-                    <span className={`text-2xl font-black tracking-tighter leading-none ${isFooter ? 'text-white' : 'text-slate-900'}`}>
-                        PEM
-                    </span>
-                    <span className={`text-[10px] font-bold tracking-[0.3em] ${isFooter ? 'text-blue-300' : 'text-blue-600'}`}>
-                        CO., LTD.
-                    </span>
+            </a>
+            <nav class="hidden lg:flex items-center space-x-10 text-lg font-bold tracking-tight text-slate-700">
+                <a href="#about" class="hover:text-blue-600 transition-colors">회사소개</a>
+                <a href="#process" class="hover:text-blue-600 transition-colors">컨설팅과정</a>
+                <a href="#new-tech" class="hover:text-blue-600 transition-colors">건설신기술</a>
+                <a href="#benefits" class="hover:text-blue-600 transition-colors">지정혜택</a>
+                <a href="#design" class="hover:text-blue-600 transition-colors">디지털설계</a>
+                <a href="#smart" class="hover:text-blue-600 transition-colors">스마트기술</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2070&q=80" class="w-full h-full object-cover scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-950/95 via-blue-900/80 to-slate-900/70"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center space-x-3 px-5 py-2 mb-8 bg-white/10 backdrop-blur-md rounded-full animate-fade-in-up">
+                    <span class="text-blue-100 text-[11px] font-black uppercase tracking-[0.3em]">Smart Engineering Solutions</span>
+                </div>
+                <h1 class="text-4xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight text-white animate-fade-in-up">
+                    기술의 가치를 <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">국가인증</span>으로 완성하다
+                </h1>
+                <p class="text-lg md:text-2xl text-blue-100/70 max-w-2xl mb-12 font-medium animate-fade-in-up break-keep">
+                    <span class="font-bold text-white">(주)PEM</span>은 귀사의 혁신 기술이 건설 시장의 새로운 기준이 되도록 가장 스마트한 <span class="text-white font-bold">건설신기술(NET) 지정 솔루션</span>을 제안합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 animate-fade-in-up">
+                    <a href="#process" class="px-10 py-5 bg-white text-blue-900 rounded-2xl font-black text-sm tracking-widest uppercase hover:scale-105 transition-all text-center">CONSULTING PROCESS</a>
                 </div>
             </div>
-        );
+        </div>
+        <div class="page-indicator text-white opacity-50 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
 
-        // --- Header Component ---
-        const Header = () => {
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
-            const navLinks = [
-                { name: '회사소개', href: '#about' },
-                { name: '컨설팅과정', href: '#process' },
-                { name: '건설신기술', href: '#new-tech' },
-                { name: '지정혜택', href: '#benefits' },
-                { name: '디지털설계', href: '#design' },
-                { name: '스마트기술', href: '#smart' },
-            ];
-
-            return (
-                <header className="fixed w-full z-50 bg-white shadow-lg py-5 transition-all duration-300">
-                    <div className="container mx-auto px-6 flex justify-between items-center">
-                        <a href="#"><Logo isFooter={false} /></a>
-                        <nav className="hidden lg:flex items-center space-x-10 ml-auto text-lg font-bold tracking-tight text-slate-700">
-                            {navLinks.map((link) => (
-                                <a key={link.name} href={link.href} className="hover:text-blue-600 transition-colors">
-                                    {link.name}
-                                </a>
-                            ))}
-                        </nav>
-                        <div className="flex items-center space-x-4 ml-10">
-                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-2xl text-slate-900">
-                                <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-                            </button>
-                        </div>
+    <section id="about" class="py-32 bg-white relative overflow-hidden scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 relative group">
+                    <div class="relative z-10 overflow-hidden rounded-[3rem] shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" class="w-full h-[600px] object-cover" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-60"></div>
                     </div>
-                    {isMenuOpen && (
-                        <div className="absolute top-full left-0 w-full bg-white shadow-xl lg:hidden flex flex-col p-6 space-y-4">
-                            {navLinks.map(link => (
-                                <a key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)} className="text-xl font-bold text-slate-800 py-2 border-b border-gray-100">
-                                    {link.name}
-                                </a>
-                            ))}
-                        </div>
-                    )}
-                </header>
-            );
-        };
-
-        // --- Hero Component ---
-        const Hero = () => (
-            <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
-                <div className="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2070&q=80" className="w-full h-full object-cover scale-110 animate-[pulse_10s_infinite]" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-950/95 via-blue-900/80 to-slate-900/70"></div>
-                </div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="max-w-4xl">
-                        <div className="inline-flex items-center space-x-3 px-5 py-2 mb-8 glass-effect rounded-full animate-fade-in-up">
-                            <span className="text-blue-100 text-[11px] font-black uppercase tracking-[0.3em]">Smart Engineering Solutions</span>
-                        </div>
-                        <h1 className="text-4xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight text-white animate-fade-in-up">
-                            기술의 가치를 <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">국가인증</span>으로 완성하다
-                        </h1>
-                        <p className="text-lg md:text-2xl text-blue-100/70 max-w-2xl mb-12 font-medium animate-fade-in-up break-keep">
-                            <span className="font-bold text-white">(주)PEM</span>은 귀사의 혁신 기술이 건설 시장의 새로운 기준이 되도록 가장 스마트한 <span className="text-white font-bold">건설신기술(NET) 지정 솔루션</span>을 제안합니다.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-6 animate-fade-in-up">
-                            <a href="#process" className="px-10 py-5 bg-white text-blue-900 rounded-2xl font-black text-sm tracking-widest uppercase hover:scale-105 transition-all text-center">CONSULTING PROCESS</a>
-                        </div>
+                    <div class="absolute -bottom-8 -right-8 bg-blue-900 p-10 rounded-[2.5rem] shadow-2xl z-20">
+                        <p class="text-blue-300 text-[10px] font-black tracking-widest uppercase mb-2">Trust & Idea</p>
+                        <p class="text-white text-4xl font-black italic tracking-tighter">PEM</p>
                     </div>
                 </div>
-            </section>
-        );
-
-        // --- About Component ---
-        const About = () => (
-            <section id="about" className="py-32 bg-white relative overflow-hidden scroll-mt-24">
-                <div className="container mx-auto px-6">
-                    <div className="flex flex-col lg:flex-row items-center gap-20">
-                        <div className="lg:w-1/2 relative group">
-                            <div className="relative z-10 overflow-hidden rounded-[3rem] shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" className="w-full h-[600px] object-cover transition-transform duration-1000 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-60"></div>
-                            </div>
-                            <div className="absolute -bottom-8 -right-8 bg-blue-900 p-10 rounded-[2.5rem] shadow-2xl z-20">
-                                <p className="text-blue-300 text-[10px] font-black tracking-widest uppercase mb-2">Trust & Idea</p>
-                                <p className="text-white text-4xl font-black italic tracking-tighter">PEM</p>
-                            </div>
-                        </div>
-                        <div className="lg:w-1/2 space-y-10">
-                            <div className="space-y-4">
-                                <p className="text-blue-600 font-black tracking-[0.4em] uppercase text-xs">Innovation Partner</p>
-                                <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter">혁신적 아이디어를 <br /><span className="text-blue-900">지적 자산</span>으로</h2>
-                            </div>
-                            <p className="text-slate-600 leading-relaxed text-xl font-medium break-keep">급변하는 스마트 건설 시장에서 귀사의 독자적인 기술력은 '국가인증'이라는 객관적 신뢰를 얻었을 때 비로소 그 진정한 가치를 발휘합니다.</p>
-                        </div>
+                <div class="lg:w-1/2 space-y-10">
+                    <div class="space-y-4">
+                        <p class="text-blue-600 font-black tracking-[0.4em] uppercase text-xs">Innovation Partner</p>
+                        <h2 class="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter">혁신적 아이디어를 <br /><span class="text-blue-900">지적 자산</span>으로</h2>
                     </div>
+                    <p class="text-slate-600 leading-relaxed text-xl font-medium break-keep">급변하는 스마트 건설 시장에서 귀사의 독자적인 기술력은 '국가인증'이라는 객관적 신뢰를 얻었을 때 비로소 그 진정한 가치를 발휘합니다.</p>
                 </div>
-            </section>
-        );
-
-        // --- WhyPEM Component ---
-        const WhyPEM = () => {
-            const reasons = [
-                { title: "현장 중심 컨설팅", desc: "시공과 설계를 아우르는 실전 경험" },
-                { title: "체계적 구조화", desc: "심의 위원을 설득하는 논리적 구성" },
-                { title: "기존특허의 보강으로 신기술 획득", desc: "단순한 기술을 넘어, 특허의 전략적 보강을 통해 국가 신기술 인증까지 이끌어냅니다." },
-                { title: "복잡한 문제의 명확한 구조화", desc: "기술적 난제를 논리적으로 분석하여 심의 위원들이 납득할 수 있는 체계로 재구성합니다." },
-                { title: "실전형 컨설턴트의 통찰력", desc: "시공과 설계를 모두 경험하여 현장의 언어와 설계의 언어를 동시에 구사합니다." },
-                { title: "결과 중심적 + 체계적 실행력", desc: "과정이 아닌 '인증 성공'이라는 결과에 집중하며 치밀한 로드맵을 실행합니다." }
-            ];
-
-            return (
-                <section id="why-osung" className="py-32 bg-slate-900 text-white relative overflow-hidden scroll-mt-24">
-                    <div className="container mx-auto px-6">
-                        <div className="flex flex-col lg:flex-row gap-16">
-                            <div className="lg:w-1/3 space-y-8">
-                                <p className="text-blue-400 font-bold tracking-widest uppercase">CORE EXPERTISE</p>
-                                <h2 className="text-5xl md:text-6xl font-black leading-tight">
-                                    왜 <br /><span className="text-blue-500">(주)PEM</span>이어야<br /> 하는가?
-                                </h2>
-                                <p className="text-slate-400 text-lg leading-relaxed break-keep">
-                                    우리는 단순한 컨설팅을 넘어, 파트너의 비즈니스 가치를 극대화하는 실전형 전략을 제안합니다.
-                                </p>
-                            </div>
-                            <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {reasons.map((item, index) => (
-                                    <div key={index} className="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all hover:-translate-y-1">
-                                        <div className="flex justify-between items-start mb-4">
-                                            <h4 className="text-xl font-bold text-white">{item.title}</h4>
-                                            <span className="text-4xl font-black text-slate-700 italic opacity-50">0{index + 1}</span>
-                                        </div>
-                                        <p className="text-slate-400 text-sm break-keep">{item.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // --- ConsultingProcess Component ---
-        const ConsultingProcess = () => {
-            const steps = [
-                { number: "01", title: "사전 진단", subtitle: "Feasibility Study", desc: "기술의 신기술 지정 가능성을 검토하고 최적의 로드맵을 설정합니다." },
-                { number: "02", title: "자료 준비", subtitle: "Documentation", desc: "심사위원을 설득할 수 있는 논리적인 서류와 근거 데이터를 준비합니다." },
-                { number: "03", title: "1차 심사", subtitle: "1st Evaluation", desc: "전문가 그룹 앞에서 기술의 우수성과 진보성을 증명하는 단계입니다." },
-                { number: "04", title: "2차 심사", subtitle: "Field Verification", desc: "이론이 아닌 실제 시공 사례를 통해 기술의 성능을 검증받습니다." },
-                { number: "05", title: "최종 확정", subtitle: "Finalization", desc: "인증 획득 후 실적 관리와 연장을 통해 가치를 유지합니다." }
-            ];
-
-            return (
-                <section id="process" className="py-32 scroll-mt-24" style={{ backgroundColor: "#E0E7F1" }}>
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-                            <p className="text-blue-600 font-black tracking-[0.3em] uppercase text-xs">Success Roadmap</p>
-                            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">신기술 지정 컨설팅 프로세스</h3>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                            {steps.map((step, i) => (
-                                <div key={i} className="group relative p-8 rounded-[2rem] bg-white border border-slate-200 transition-all duration-500 hover:bg-blue-900 hover:-translate-y-2 hover:shadow-2xl">
-                                    <span className="text-6xl font-black text-blue-600 group-hover:text-white transition-colors duration-500 leading-none">{step.number}</span>
-                                    <div className="mt-6 mb-6">
-                                        <h4 className="text-2xl font-black text-slate-900 group-hover:text-white mb-2 break-keep">{step.title}</h4>
-                                        <p className="text-xs font-bold text-blue-600 group-hover:text-blue-300 uppercase tracking-widest">{step.subtitle}</p>
-                                    </div>
-                                    <p className="text-sm text-slate-500 group-hover:text-blue-100/80 leading-relaxed font-medium break-keep">{step.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // --- NewTechInfo Component ---
-        const NewTechInfo = () => {
-            const cards = [
-                { icon: "fa-lightbulb", title: "신규성 및 진보성", desc: "핵심 기술 원리의 차별화와 획기적인 성능 향상을 논리적으로 증명합니다." },
-                { icon: "fa-chart-line", title: "시장성 및 경제성", desc: "LCC 분석을 통한 공사비 절감 및 유지관리 효율성을 제시합니다." },
-                { icon: "fa-shield-halved", title: "안전성 및 적용성", desc: "현장 시공의 안전 확보와 품질 일관성, 유지관리 편의성을 검증합니다." }
-            ];
-            return (
-                <section id="new-tech" className="py-32 scroll-mt-24" style={{ backgroundColor: "#D0D9E6" }}>
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-4xl mx-auto text-center mb-24">
-                            <h3 className="text-4xl md:text-5xl font-black text-slate-900">건설신기술(NET) 지정은 <br /><span className="text-blue-700">새로운 기준</span>입니다</h3>
-                            <p className="mt-6 text-lg text-slate-700 font-medium break-keep">국가인증을 통해 우수성, 경제성, 안전성이 인정되는 기술임을 증명하고 시장 진입의 강력한 티켓을 확보하십시오.</p>
-                        </div>
-                        <div className="grid md:grid-cols-3 gap-10">
-                            {cards.map((card, i) => (
-                                <div key={i} className="bg-white p-12 rounded-[2.5rem] shadow-lg border border-white/50 hover:shadow-2xl transition-all group">
-                                    <div className="w-20 h-20 bg-slate-100 text-blue-600 rounded-3xl flex items-center justify-center text-3xl mb-10 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-md"><i className={`fas ${card.icon}`}></i></div>
-                                    <h4 className="text-2xl font-black mb-6">{card.title}</h4>
-                                    <p className="text-slate-500 font-medium break-keep">{card.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // --- Benefits Component ---
-        const Benefits = () => {
-            const benefits = [
-                { title: "공공기관 우선 적용", desc: "국가기관 및 지자체 발주 공사 시 신기술 우선 반영 의무화 규정 적용" },
-                { title: "입찰 PQ 가점", desc: "입찰참가자격사전심사 시 기술 능력 항목에서 최고 수준의 가점 혜택" },
-                { title: "기술료 징수 권리", desc: "제3자가 신기술을 현장에 적용할 경우 공사비 기반의 기술 사용료 징수" },
-                { title: "독점 보호 기간", desc: "최초 8년, 연장 시 최대 15년까지 해당 기술에 대한 독점적 시장 권리" },
-                { title: "자금 우선 지원", desc: "정부 기술 사업화 자금 및 공공 금융기관의 우대 금리 융자 지원" },
-                { title: "정부 홍보 지원", desc: "국토교통부 주관 박람회 참가 및 온라인 전시관 기술 상시 노출 지원" }
-            ];
-
-            return (
-                <section id="benefits" className="py-32 scroll-mt-24" style={{ backgroundColor: "#C0C9D6" }}>
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-4xl mx-auto text-center mb-20 space-y-6">
-                            <p className="text-blue-800 font-black tracking-[0.3em] uppercase text-xs">Unmatched Value</p>
-                            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                                지정 그 이상의 압도적 <br className="sm:hidden" />
-                                비즈니스 <span className="text-blue-800">인센티브</span>
-                            </h3>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                            {benefits.map((b, i) => (
-                                <div key={i} className="group p-8 md:p-10 border border-white/50 rounded-[2.5rem] bg-white hover:border-blue-500/20 hover:shadow-[0_30px_70px_rgba(0,0,0,0.06)] transition-all duration-500">
-                                    <div className="flex items-center gap-6 mb-6">
-                                        <span className="text-6xl md:text-7xl font-black text-blue-600 leading-none tabular-nums shrink-0">
-                                            {String(i + 1).padStart(2, '0')}
-                                        </span>
-                                        <div className="h-10 w-px bg-slate-200 group-hover:bg-blue-200 transition-colors"></div>
-                                        <h4 className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter group-hover:text-blue-900 transition-colors break-keep">
-                                            {b.title}
-                                        </h4>
-                                    </div>
-                                    <p className="text-base md:text-lg text-slate-500 leading-relaxed font-medium group-hover:text-slate-600 transition-colors break-keep">
-                                        {b.desc}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // --- Design Component ---
-        const Design = () => {
-            return (
-                <section id="design" className="py-32 bg-slate-50 relative overflow-hidden scroll-mt-24">
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-                            <p className="text-blue-600 font-black tracking-[0.3em] uppercase text-xs">Digital Transformation</p>
-                            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                                스마트 <span className="text-blue-800">디지털 설계</span> 및 보고서 자동화
-                            </h3>
-                            <p className="text-lg text-slate-500 font-medium break-keep">(주)PEM의 전문 설계 기술로 생산성을 높이세요.</p>
-                        </div>
-
-                        <div className="max-w-2xl mx-auto space-y-10">
-                            <div className="relative flex items-center bg-white rounded-2xl p-2 shadow-xl border border-slate-100 group">
-                                <input type="text" placeholder="설계 프로젝트 번호를 입력하세요" className="flex-grow bg-transparent border-none focus:ring-0 text-slate-800 font-bold px-6 outline-none" />
-                                <button className="bg-blue-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-800 transition-colors uppercase text-sm tracking-widest">Search</button>
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <a href="#" onClick={e => e.preventDefault()} className="flex items-center justify-center space-x-3 p-8 bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl hover:border-blue-500/20 transition-all group">
-                                    <i className="fas fa-external-link-alt text-blue-600 text-2xl group-hover:scale-110 transition-transform"></i>
-                                    <span className="font-black text-slate-900 text-xl">보고서 앱이동</span>
-                                </a>
-                                <a href="#" onClick={e => e.preventDefault()} className="flex items-center justify-center space-x-3 p-8 bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl hover:border-emerald-500/20 transition-all group">
-                                    <i className="fas fa-magic text-emerald-600 text-2xl group-hover:scale-110 transition-transform"></i>
-                                    <span className="font-black text-slate-900 text-xl">보고서 자동작성</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // --- SmartTech Component ---
-        const SmartTech = () => (
-            <section id="smart" className="py-24 bg-slate-900 text-white overflow-hidden scroll-mt-24">
-                <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-                    <div className="lg:w-1/2">
-                        <h3 className="text-4xl font-bold mb-8 leading-tight">디지털 대전환, <br /><span className="text-blue-300 italic">스마트 건설기술</span>을 선도합니다</h3>
-                        <p className="text-slate-400 text-lg mb-10 leading-relaxed break-keep">드론, BIM, 로보틱스 등 4차 산업혁명 기술의 지정을 위해 최적의 고도화 전략을 지원합니다.</p>
-                        <ul className="space-y-4">
-                            {["드론·IoT 기반 실시간 현장 관리", "BIM 기반 데이터 중심 시공 최적화", "로보틱스 및 모듈러 건축 혁신"].map((t, i) => (
-                                <li key={i} className="flex items-center space-x-3">
-                                    <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-[10px]"><i className="fas fa-check"></i></div>
-                                    <span>{t}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="lg:w-1/2 rounded-3xl overflow-hidden border-4 border-slate-800 shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80" className="w-full" />
-                    </div>
-                </div>
-            </section>
-        );
-
-        // --- Footer Component ---
-        const Footer = () => {
-            return (
-                <footer className="bg-slate-950 text-white py-24 relative overflow-hidden">
-                    <div className="container mx-auto px-6 grid lg:grid-cols-4 gap-12 mb-20">
-                        <div className="col-span-1 lg:col-span-2 space-y-8">
-                            <Logo isFooter={true} /> 
-                            <p className="text-slate-300 max-w-sm text-xl italic leading-relaxed break-keep border-l-4 border-blue-600 pl-4">
-                                "귀사의 혁신이 대한민국의 표준이 되도록 <span className="text-white font-bold">(주)PEM</span>이 함께하겠습니다."
-                            </p>
-                        </div>
-                        
-                        <div className="flex flex-col">
-                            <h4 className="text-[10px] font-black uppercase text-blue-600 mb-6">Location</h4>
-                            <div className="w-full h-48 bg-slate-900 border-2 border-slate-800 rounded-2xl relative overflow-hidden group">
-                                <iframe 
-                                    src="https://maps.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%95%88%EC%96%91%EC%8B%9A%20%EB%A7%8C%EC%95%88%EA%B5%AC%20%EC%95%8A%EC%96%91%EB%A1%9C%20115&t=&z=13&ie=UTF-8&iwloc=&output=embed" 
-                                    width="100%" 
-                                    height="100%" 
-                                    style={{ border: 0 }} 
-                                    allowFullScreen="" 
-                                    loading="lazy" 
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    title="(주)PEM 위치"
-                                    className="absolute inset-0 z-10"
-                                ></iframe>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col">
-                            <h4 className="text-[10px] font-black uppercase text-blue-600 mb-6">Contact Us</h4>
-                            <ul className="space-y-6 text-xl text-slate-300 font-medium">
-                                <li className="flex items-start">
-                                    <i className="fas fa-location-dot mt-1.5 w-6 text-blue-600 text-sm"></i>
-                                    <span>경기도 안양시 만안구 안양로 115 <br /><span className="text-white font-bold">도정 1106호</span></span>
-                                </li>
-                                <li className="flex items-center">
-                                    <i className="fas fa-phone w-6 text-blue-600 text-sm"></i>
-                                    <span className="tracking-wide">031-426-7194</span>
-                                </li>
-                                <li className="flex items-center">
-                                    <i className="fas fa-envelope w-6 text-blue-600 text-sm"></i>
-                                    <a href="mailto:osung7194@naver.com" className="hover:text-white transition-colors">osung7194@naver.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="container mx-auto px-6 pt-12 border-t border-slate-900 text-center">
-                        <p className="text-[10px] text-slate-600 font-black uppercase tracking-widest">© 2026 PEM CO., LTD. ALL RIGHTS RESERVED.</p>
-                    </div>
-                </footer>
-            );
-        };
-
-        const AIConsultant = () => {
-            const [isOpen, setIsOpen] = useState(false);
-            const [messages, setMessages] = useState([{ role: 'bot', text: '안녕하세요! (주)PEM AI 컨설턴트입니다. 무엇을 도와드릴까요?' }]);
-            const [input, setInput] = useState('');
-            const [isLoading, setIsLoading] = useState(false);
-            
-            const handleSend = () => {
-                if (!input.trim() || isLoading) return;
-                setInput('');
-                setMessages(prev => [...prev, { role: 'user', text: input }]);
-                setIsLoading(true);
-                setTimeout(() => {
-                    setMessages(prev => [...prev, { role: 'bot', text: "데모 버전입니다. 실제 상담은 전화 문의 부탁드립니다." }]);
-                    setIsLoading(false);
-                }, 1000);
-            };
-
-            return (
-                <div className="fixed bottom-8 right-8 z-[60]">
-                    <button onClick={() => setIsOpen(!isOpen)} className="w-16 h-16 rounded-2xl bg-blue-600 text-white shadow-2xl flex items-center justify-center hover:-translate-y-1 transition-all">
-                        <i className={`fas ${isOpen ? 'fa-times' : 'fa-comment-dots'} text-2xl`}></i>
-                    </button>
-                    {isOpen && (
-                        <div className="absolute bottom-20 right-0 w-[350px] h-[500px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-slate-100">
-                            <div className="bg-blue-900 p-6 text-white font-bold">PEM AI Chat</div>
-                            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50">
-                                {messages.map((m, i) => (
-                                    <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                        <div className={`p-3 rounded-xl text-sm max-w-[80%] ${m.role === 'user' ? 'bg-blue-600 text-white' : 'bg-white border text-slate-700'}`}>{m.text}</div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="p-4 bg-white border-t flex gap-2">
-                                <input className="flex-1 bg-slate-100 rounded-lg px-4 text-sm outline-none" value={input} onChange={e => setInput(e.target.value)} onKeyPress={e => e.key === 'Enter' && handleSend()} placeholder="메시지 입력..." />
-                                <button onClick={handleSend} className="bg-blue-600 text-white px-4 rounded-lg"><i className="fas fa-paper-plane"></i></button>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        };
-
-        const App = () => (
-            <div className="min-h-screen">
-                <Header />
-                <main>
-                    <Hero />
-                    <About />
-                    <WhyPEM />
-                    <ConsultingProcess />
-                    <NewTechInfo />
-                    <Benefits />
-                    <Design />
-                    <SmartTech />
-                </main>
-                <Footer />
-                <AIConsultant />
             </div>
-        );
+        </div>
+        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+    <section class="py-32 bg-slate-900 text-white relative overflow-hidden scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-1/3 space-y-8">
+                    <p class="text-blue-400 font-bold tracking-widest uppercase">CORE EXPERTISE</p>
+                    <h2 class="text-4xl md:text-5xl font-black leading-snug break-keep text-white">
+                        기술의 가치를 <br>증명하는 <br><span class="text-blue-400 font-black">(주)PEM</span>의 전략
+                    </h2>
+                    <p class="text-slate-400 text-lg leading-relaxed break-keep">
+                        우리는 단순한 컨설팅을 넘어, 파트너의 비즈니스 가치를 극대화하는 실전형 전략을 제안합니다.
+                    </p>
+                </div>
+                <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">현장 중심 컨설팅</h4>
+                            <span class="text-4xl font-black text-slate-700 italic opacity-50">01</span>
+                        </div>
+                        <p class="text-slate-400 text-sm break-keep">시공과 설계를 아우르는 실전 경험</p>
+                    </div>
+                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">체계적 구조화</h4>
+                            <span class="text-4xl font-black text-slate-700 italic opacity-50">02</span>
+                        </div>
+                        <p class="text-slate-400 text-sm break-keep">심의 위원을 설득하는 논리적 구성</p>
+                    </div>
+                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">기존특허 보강 및 신기술 획득</h4>
+                            <span class="text-4xl font-black text-slate-700 italic opacity-50">03</span>
+                        </div>
+                        <p class="text-slate-400 text-sm break-keep">단순한 기술을 넘어, 특허의 전략적 보강을 통해 국가 신기술 인증까지 이끌어냅니다.</p>
+                    </div>
+                    <div class="p-8 rounded-3xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">난제의 명확한 구조화</h4>
+                            <span class="text-4xl font-black text-slate-700 italic opacity-50">04</span>
+                        </div>
+                        <p class="text-slate-400 text-sm break-keep">기술적 난제를 논리적으로 분석하여 심의 위원들이 납득할 수 있는 체계로 재구성합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-indicator text-white opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <section id="process" class="relative py-32 bg-[#E0E7F1] scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-16 space-y-4">
+                <p class="text-blue-600 font-black tracking-[0.3em] uppercase text-xs">Success Roadmap</p>
+                <h3 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">신기술 지정 컨설팅 프로세스</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
+                    <span class="text-6xl font-black text-blue-600 leading-none">01</span>
+                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">사전 진단</h4>
+                    <p class="text-sm text-slate-500 break-keep">기술의 신기술 지정 가능성을 검토하고 최적의 로드맵을 설정합니다.</p>
+                </div>
+                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
+                    <span class="text-6xl font-black text-blue-600 leading-none">02</span>
+                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">자료 준비</h4>
+                    <p class="text-sm text-slate-500 break-keep">심사위원을 설득할 수 있는 논리적인 서류와 근거 데이터를 준비합니다.</p>
+                </div>
+                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
+                    <span class="text-6xl font-black text-blue-600 leading-none">03</span>
+                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">1차 심사</h4>
+                    <p class="text-sm text-slate-500 break-keep">전문가 그룹 앞에서 기술의 우수성과 진보성을 증명하는 단계입니다.</p>
+                </div>
+                <div class="p-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm">
+                    <span class="text-6xl font-black text-blue-600 leading-none">04</span>
+                    <h4 class="text-2xl font-black text-slate-900 mt-4 mb-2">2차 심사</h4>
+                    <p class="text-sm text-slate-500 break-keep">이론이 아닌 실제 시공 사례를 통해 기술의 성능을 검증받습니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <section id="new-tech" class="relative py-32 bg-[#D0D9E6] scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-24">
+                <h3 class="text-4xl md:text-5xl font-black text-slate-900">건설신기술(NET) 지정은 <br /><span class="text-blue-700">새로운 기준</span>입니다</h3>
+                <p class="mt-6 text-lg text-slate-700 font-medium break-keep">국가인증을 통해 우수성, 경제성, 안전성이 인정되는 기술임을 증명하고 시장 진입의 강력한 티켓을 확보하십시오.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
+                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-lightbulb"></i></div>
+                    <h4 class="text-2xl font-black mb-4">신규성 및 진보성</h4>
+                    <p class="text-slate-500 font-medium break-keep">핵심 기술 원리의 차별화와 획기적인 성능 향상을 논리적으로 증명합니다.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
+                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-chart-line"></i></div>
+                    <h4 class="text-2xl font-black mb-4">시장성 및 경제성</h4>
+                    <p class="text-slate-500 font-medium break-keep">LCC 분석을 통한 공사비 절감 및 유지관리 효율성을 제시합니다.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[2.5rem] shadow-lg">
+                    <div class="w-16 h-16 bg-slate-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-8"><i class="fas fa-shield-halved"></i></div>
+                    <h4 class="text-2xl font-black mb-4">안전성 및 적용성</h4>
+                    <p class="text-slate-500 font-medium break-keep">현장 시공의 안전 확보와 품질 일관성, 유지관리 편의성을 검증합니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <section id="benefits" class="relative py-32 bg-[#C0C9D6] scroll-mt-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-20">
+                <p class="text-blue-800 font-black tracking-[0.3em] uppercase text-xs">Unmatched Value</p>
+                <h3 class="text-4xl md:text-5xl font-black text-slate-900 mt-4">지정 그 이상의 비즈니스 인센티브</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-2">① 공공기관 우선 적용</h4>
+                    <p class="text-slate-500 break-keep">국가기관 및 지자체 발주 공사 시 신기술 우선 반영 의무화 규정 적용</p>
+                </div>
+                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-2">② 입찰 PQ 가점</h4>
+                    <p class="text-slate-500 break-keep">입찰참가자격사전심사 시 기술 능력 항목에서 최고 수준의 가점 혜택</p>
+                </div>
+                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-2">③ 기술료 징수 권리</h4>
+                    <p class="text-slate-500 break-keep">제3자가 신기술을 현장에 적용할 경우 공사비 기반의 기술 사용료 징수</p>
+                </div>
+                <div class="p-8 bg-white rounded-[2rem] shadow-sm">
+                    <h4 class="text-xl font-black text-blue-900 mb-2">④ 독점 보호 기간</h4>
+                    <p class="text-slate-500 break-keep">최초 8년, 연장 시 최대 15년까지 해당 기술에 대한 독점적 시장 권리</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <section id="design" class="relative py-32 bg-slate-50 scroll-mt-24">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-8 bg-white rounded-2xl border shadow-sm">
+                    <i class="fas fa-external-link-alt text-blue-600 text-2xl mb-4"></i>
+                    <h4 class="font-black text-slate-900 text-xl">보고서 앱이동</h4>
+                </div>
+                <div class="p-8 bg-white rounded-2xl border shadow-sm">
+                    <i class="fas fa-magic text-emerald-600 text-2xl mb-4"></i>
+                    <h4 class="font-black text-slate-900 text-xl">보고서 자동작성</h4>
+                </div>
+            </div>
+        </div>
+        <div class="page-indicator text-slate-900 opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <section id="smart" class="relative py-24 bg-slate-900 text-white scroll-mt-24">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2">
+                <h3 class="text-4xl font-bold mb-8">디지털 대전환, <br><span class="text-blue-300 italic">스마트 건설기술</span>을 선도합니다</h3>
+                <p class="text-slate-400 text-lg mb-6 leading-relaxed">드론, BIM, 로보틱스 등 4차 산업혁명 기술의 지정을 위해 최적의 고도화 전략을 <br class="hidden sm:block"> 지원합니다.</p>
+            </div>
+            <div class="lg:w-1/2 rounded-3xl overflow-hidden border-4 border-slate-800">
+                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80" class="w-full" />
+            </div>
+        </div>
+        <div class="page-indicator text-white opacity-20 hidden sm:block">
+            PRIME ENGINEERING MANAGEMENT
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-white py-24 relative">
+        <div class="container mx-auto px-6 grid lg:grid-cols-3 gap-12 mb-20">
+            <div class="flex flex-col justify-center space-y-6">
+                <h3 class="text-4xl font-black text-white tracking-wide">PEM Co., Ltd.</h3>
+                <p class="text-slate-300 text-xl leading-relaxed break-keep">
+                    Room 1106, Dojeong, 115 Anyang-ro, Manan-gu, <br>Anyang-si, Gyeonggi-do, Korea
+                </p>
+                <p class="text-blue-400 font-bold text-2xl tracking-wider">
+                    Prime Engineering Management
+                </p>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-black uppercase text-blue-600 mb-6">Location</h4>
+                <div class="w-full h-56 rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.3241477759296!2d126.92265637637827!3d37.382218034024545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5f903673e721%3A0x8cf6b446a8be24ef!2s115%20Anyang-ro%2C%20Manan-gu%2C%20Anyang-si%2C%20Gyeonggi-do!5e0!3m2!1sen!2skr!4v1710000000000!5m2!1sen!2skr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                     iframe>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-black uppercase text-blue-600 mb-6">Contact Us</h4>
+                <ul class="space-y-4 text-slate-300 text-xl font-medium">
+                    <li><i class="fas fa-location-dot text-blue-600 mr-2 text-base"></i> 경기도 안양시 만안구 안양로 115 도정 1106호</li>
+                    <li><i class="fas fa-phone text-blue-600 mr-2 text-base"></i> 031-426-7194</li>
+                    <li><i class="fas fa-envelope text-blue-600 mr-2 text-base"></i> osung7194@naver.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 pt-12 border-t border-slate-900 text-center">
+            <p class="text-[10px] text-slate-600 font-black tracking-widest">© 2026 PEM CO., LTD. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
+
+```
